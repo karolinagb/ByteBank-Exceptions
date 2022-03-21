@@ -13,6 +13,8 @@ namespace ByteBank
         //é uma propriedade relativa a classe e não ao objeto
         public static double TaxaOperacao { get; private set; }
         public static int TotalDeContasCriadas { get; private set; }
+        public int ContadorSaquesNaoPermitidos { get; private set; }
+        public int ContadorTransferenciasNaoPermitidos { get; private set; }
 
         public int Agencia { get; }
 
@@ -76,6 +78,7 @@ namespace ByteBank
 
             if (_saldo < valor)
             {
+                ContadorSaquesNaoPermitidos++;
                 throw new SaldoInsuficienteException(Saldo, valor);
             }
 
@@ -95,8 +98,16 @@ namespace ByteBank
             {
                 throw new ArgumentException("Valor inválido para a transferência", nameof(valor));
             }
-
-            Sacar(valor);
+            try
+            {
+                Sacar(valor);
+            }
+            catch (SaldoInsuficienteException e)
+            {
+                ContadorTransferenciasNaoPermitidos++;
+                throw;
+            }
+            
             contaDestino.Depositar(valor);
             
         }
