@@ -9,11 +9,12 @@ namespace ByteBank_Exceptions
         {
             try
             {
-                ContaCorrente conta = new ContaCorrente(8090, 9080);
+                ContaCorrente conta = new ContaCorrente(8090, 0);
                 Metodo();
             }
             catch (ArgumentException e)
             {
+                Console.WriteLine("Argumento com problema  + e.ParamName");
                 Console.WriteLine("Ocorreu uma ArgumentException");
                 Console.WriteLine(e.Message);
             }

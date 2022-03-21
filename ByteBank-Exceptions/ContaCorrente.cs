@@ -41,7 +41,7 @@ namespace ByteBank
         {
             if(agencia <= 0)
             {
-                ArgumentException excecao = new ArgumentException("A agencia deve ser maiores que 0.");
+                ArgumentException excecao = new ArgumentException("A agencia deve ser maiores que 0.", nameof(agencia));
 
                 //throw sozinho só dá para ser usado em um contexto que tenha uma exceção
                 //Posso usar o throw passando  qual exceção quero lançar
@@ -50,7 +50,7 @@ namespace ByteBank
 
             if (numero <= 0)
             {
-                ArgumentException excecao = new ArgumentException("Número deve ser maiores que 0.");
+                ArgumentException excecao = new ArgumentException("Número deve ser maiores que 0.", nameof(numero));
 
                 //throw sozinho só dá para ser usado em um contexto que tenha uma exceção
                 //Posso usar o throw passando  qual exceção quero lançar
