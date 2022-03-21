@@ -39,13 +39,15 @@ namespace ByteBank_Exceptions
 
         private static int Dividir(int numero, int divisor)
         {
-            var divisao =  numero / divisor;
-
-            ContaCorrente conta = null;
-
-            Console.WriteLine(conta.Saldo);
-
-            return divisao;
+            try
+            {
+                return numero / divisor;
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Exceção com número=" + numero + " e divisor=" + divisor);
+                throw; //Lança a exceção que aconteceu aqui dentro e saimos desse fluxo pois ele encerra o metodo
+            }
         }
     }
 }
