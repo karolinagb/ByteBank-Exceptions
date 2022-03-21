@@ -15,10 +15,10 @@ namespace ByteBank_Exceptions
             {
                 Console.WriteLine("Não é possível divisão por zero.");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
                 Console.WriteLine("Aconteceu um erro");
             }
 
