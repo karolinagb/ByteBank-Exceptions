@@ -11,9 +11,13 @@ namespace ByteBank_Exceptions
             {
                 ContaCorrente conta = new ContaCorrente(8090, 9080);
 
+                ContaCorrente conta2 = new ContaCorrente(4850, 5048);
+
+                conta2.Transferir(-10, conta);
+
                 conta.Depositar(50);
                 Console.WriteLine(conta.Saldo);
-                conta.Sacar(500);
+                conta.Sacar(-500);
                 Metodo();
             }
             catch (SaldoInsuficienteException e)
@@ -23,7 +27,7 @@ namespace ByteBank_Exceptions
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine("Argumento com problema" + e.ParamName);
+                Console.WriteLine("Argumento com problema " + e.ParamName);
                 Console.WriteLine("Ocorreu uma ArgumentException");
                 Console.WriteLine(e.Message);
             }
