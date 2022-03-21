@@ -9,12 +9,21 @@ namespace ByteBank_Exceptions
         {
             try
             {
-                ContaCorrente conta = new ContaCorrente(8090, 0);
+                ContaCorrente conta = new ContaCorrente(8090, 9080);
+
+                conta.Depositar(50);
+                Console.WriteLine(conta.Saldo);
+                conta.Sacar(500);
                 Metodo();
+            }
+            catch (SaldoInsuficienteException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Exceção de SaldoInsuficienteException");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine("Argumento com problema  + e.ParamName");
+                Console.WriteLine("Argumento com problema" + e.ParamName);
                 Console.WriteLine("Ocorreu uma ArgumentException");
                 Console.WriteLine(e.Message);
             }
