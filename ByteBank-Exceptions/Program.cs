@@ -19,17 +19,23 @@ namespace ByteBank_Exceptions
                 Console.WriteLine(conta.Saldo);
                 conta.Sacar(-500);
                 Metodo();
-            }
-            catch (SaldoInsuficienteException e)
-            {
-                Console.WriteLine(e.Saldo);
-                Console.WriteLine(e.ValorSaque);
 
-                Console.WriteLine(e.StackTrace);
+                ContaCorrente conta3 = new ContaCorrente(4564, 789684);
+                ContaCorrente conta4 = new ContaCorrente(7891, 456794);
 
-                Console.WriteLine(e.Message);
-                Console.WriteLine("Exceção de SaldoInsuficienteException");
+                //conta4.Transferir(10000, conta2);
+                conta4.Sacar(10000);
             }
+            //catch (SaldoInsuficienteException e)
+            //{
+            //    Console.WriteLine(e.Saldo);
+            //    Console.WriteLine(e.ValorSaque);
+
+            //    Console.WriteLine(e.StackTrace);
+
+            //    Console.WriteLine(e.Message);
+            //    Console.WriteLine("Exceção de SaldoInsuficienteException");
+            //}
             catch (ArgumentException e)
             {
                 Console.WriteLine("Argumento com problema " + e.ParamName);
@@ -40,12 +46,19 @@ namespace ByteBank_Exceptions
             {
                 Console.WriteLine("Não é possível divisão por zero.");
             }
+            catch (OperacaoFinanceiraException e)
+            {
+                Console.WriteLine(e.InnerException.StackTrace);
+                Console.WriteLine(e.InnerException.Message);
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
                 Console.WriteLine("Aconteceu um erro");
+                
             }
+            
 
             Console.ReadLine();
         }
