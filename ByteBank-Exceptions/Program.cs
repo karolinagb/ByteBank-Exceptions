@@ -23,23 +23,35 @@ namespace ByteBank_Exceptions
 
         private static void CarregarContasCorrente()
         {
-            LeitorDeArquivos leitor = null;
-
-            try
+            //o using faz o que try e o finally faz. Ele verifica se o objeto passado é nulo, se for ele nao executa o dispose
+            //Se for diferente de nulo ele executa o dispose e fecha o arquivo
+            //o bloco using é transformado no bloco try e finally
+            //se acontece uma excecao ja dentor do bloco using, ele chama o dispose
+            using (LeitorDeArquivos leitor = new LeitorDeArquivos("teste.txt"))
             {
-                leitor = new LeitorDeArquivos("contas.txt");
-
-                leitor.LerProximaLinha();
-                leitor.LerProximaLinha();
                 leitor.LerProximaLinha();
             }
-            finally
-            {
-                if (leitor != null)
-                {
-                    leitor.Fechar();
-                }
-            }
+
+
+            // --------------------------------------------------------------------
+
+            //LeitorDeArquivos leitor = null;
+
+            //try
+            //{
+            //    leitor = new LeitorDeArquivos("contas.txt");
+
+            //    leitor.LerProximaLinha();
+            //    leitor.LerProximaLinha();
+            //    leitor.LerProximaLinha();
+            //}
+            //finally
+            //{
+            //    if (leitor != null)
+            //    {
+            //        leitor.Fechar();
+            //    }
+            //}
         }
 
         private static void TestaExcecoes()

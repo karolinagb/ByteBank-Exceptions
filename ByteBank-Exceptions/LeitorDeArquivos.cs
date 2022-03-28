@@ -3,14 +3,14 @@ using System.IO;
 
 namespace ByteBank_Exceptions
 {
-    public class LeitorDeArquivos
+    public class LeitorDeArquivos : IDisposable
     {
         public string Arquivo { get; set; }
         public LeitorDeArquivos(string arquivo)
         {
             Arquivo = arquivo;
 
-            throw new FileNotFoundException();
+           // throw new FileNotFoundException();
 
             Console.WriteLine("Abrindo arquivo: " + arquivo);
         }
@@ -28,6 +28,13 @@ namespace ByteBank_Exceptions
         public void Fechar()
         {
             Console.WriteLine("Fechando arquivo.");
+        }
+
+
+        //metodo de liberar recursos
+        public void Dispose()
+        {
+            Fechar();
         }
     }
 }
