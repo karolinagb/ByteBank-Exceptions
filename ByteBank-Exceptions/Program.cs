@@ -8,7 +8,15 @@ namespace ByteBank_Exceptions
     {
         static void Main(string[] args)
         {
-            CarregarContasCorrente();
+            try
+            {
+
+                CarregarContasCorrente();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Catch no metodo main");
+            }
 
             Console.ReadLine();
         }
@@ -24,10 +32,6 @@ namespace ByteBank_Exceptions
                 leitor.LerProximaLinha();
                 leitor.LerProximaLinha();
                 leitor.LerProximaLinha();
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine("Exceção do tipo IOException capturada");
             }
             finally
             {
