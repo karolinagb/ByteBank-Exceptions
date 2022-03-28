@@ -1,11 +1,44 @@
 ﻿using ByteBank;
 using System;
+using System.IO;
 
 namespace ByteBank_Exceptions
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            CarregarContasCorrente();
+
+            Console.ReadLine();
+        }
+
+        private static void CarregarContasCorrente()
+        {
+            LeitorDeArquivos leitor = null;
+
+            try
+            {
+                leitor = new LeitorDeArquivos("contas.txt");
+
+                leitor.LerProximaLinha();
+                leitor.LerProximaLinha();
+                leitor.LerProximaLinha();
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Exceção do tipo IOException capturada");
+            }
+            finally
+            {
+                if (leitor != null)
+                {
+                    leitor.Fechar();
+                }
+            }
+        }
+
+        private static void TestaExcecoes()
         {
             try
             {
@@ -56,11 +89,8 @@ namespace ByteBank_Exceptions
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
                 Console.WriteLine("Aconteceu um erro");
-                
-            }
-            
 
-            Console.ReadLine();
+            }
         }
 
         private static void Metodo()
